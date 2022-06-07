@@ -1,6 +1,6 @@
 <template>
   <button
-    @click="toggleUpVoteStatus(UpVote)"
+    @click="toggleUpVoteStatus(upVoteListId)"
     v-bind:class="
       UpVote.selected ? 'up-vote-button selected' : 'up-vote-button'
     "
@@ -13,7 +13,7 @@
 import { mapActions } from "vuex";
 export default {
   name: "UpVote",
-  props: ["UpVote"],
+  props: ["UpVote", "upVoteListId"],
   methods: {
     ...mapActions({
       toggleUpVoteStatus: "toggleUpVoteStatus",

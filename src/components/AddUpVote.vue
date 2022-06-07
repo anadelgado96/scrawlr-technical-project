@@ -1,5 +1,5 @@
 <template>
-  <button @click="addNewUpVoteItem()" class="add-up-vote-button">
+  <button @click="addNewUpVoteItem(upVoteListId)" class="add-up-vote-button">
     <img alt="Add Up Vote" src="../assets/add.svg" />
   </button>
 </template>
@@ -7,6 +7,10 @@
 <script>
 export default {
   name: "AddUpVote",
+  props: ["upVoteListId"],
+  created() {
+    console.log(this.upVoteListId);
+  },
   data() {
     return {
       newUpVoteItem: "",
@@ -14,7 +18,7 @@ export default {
   },
   methods: {
     addNewUpVoteItem() {
-      this.$store.dispatch("addNewUpVote", this.newUpVoteItem);
+      this.$store.dispatch("addNewUpVote", this.upVoteListId);
     },
   },
 };

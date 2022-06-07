@@ -3,9 +3,30 @@ import { createStore } from 'vuex';
 const store = createStore({
     state: {
 
-        upVotes: [
+        upVotesList: [
             {
-                selected: false
+            id: 0,
+            upVotes: [
+                {
+                    selected: false
+                }
+            ],
+            },
+            {
+                id: 1,
+                upVotes: [
+                    {
+                        selected: false
+                    }
+                ],
+            },
+            {
+                id: 2,
+                upVotes: [
+                    {
+                        selected: false
+                    }
+                ],
             }
         ]
     },
@@ -13,13 +34,15 @@ const store = createStore({
 
     },
     mutations: {
-        NEW_UPVOTE(state, upVoteItem) {
-            state.upVotes.push({
+        NEW_UPVOTE(state,upVoteListId) {
+            state.upVotesList[upVoteListId].upVotes.push({
                 selected: false
             })
         },
-        TOGGLE_UPVOTE_STATUS(state, upVoteItem) {
-            upVoteItem.selected = !upVoteItem.selected;
+        TOGGLE_UPVOTE_STATUS(state, upVoteListId) {
+            state.upVotesList[upVoteListId].upVotes.map((upvote) => {
+                upvote.selected = !upvote.selected;
+            })
         }
     },
     actions: {

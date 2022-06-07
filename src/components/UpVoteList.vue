@@ -1,26 +1,48 @@
 <template>
-  <div class="upVoteList">
-    <UpVote v-for="(UpVote, index) in upVotes" :key="index" :UpVote="UpVote" />
+  <div class="row">
+    <div class="upVoteList">
+      <UpVote
+        v-for="(UpVote, index) in $store.state.upVotesList[upVoteListId].upVotes"
+        :key="index"
+        :UpVote="UpVote" :upVoteListId="upVoteListId"
+      />
+    </div>
+    <AddUpVote :upVoteListId="upVoteListId"/>
   </div>
 </template>
 
 <script>
-/*This will fetch from the store the number of upvotes*/
-import { mapState } from "vuex";
+
+//import { mapState } from "vuex";
 import UpVote from "./UpVote.vue";
+import AddUpVote from "./AddUpVote.vue";
+
 export default {
   components: {
     UpVote,
+    AddUpVote,
   },
+  props: ["upVoteListId"],
+  /* created() {
+    console.log(this.upVoteListId);
+  }
   computed: {
     ...mapState({
       upVotes: "upVotes",
     }),
-  },
+  },*/
 };
 </script>
 
 <style scoped>
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 10px;
+}
 .upVoteList {
   display: flex;
   align-items: center;
@@ -29,7 +51,7 @@ export default {
   padding: 10px;
   border: 1px solid rgb(199, 196, 196);
   border-radius: 10px;
-  max-width: 500px;
+  width: 500px;
   margin: auto;
   overflow: auto;
 }
